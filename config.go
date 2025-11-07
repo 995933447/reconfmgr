@@ -5,12 +5,12 @@ import (
 )
 
 type Config interface {
-	LoadConfig() error
-	ReloadConfig()
-	GetListenKeys() []string
-	SetName(string)
-	GetName() string
-	GetPriority() int
+	LoadConfig() error       // 首次加载配置
+	ReloadConfig()           // 重载配置
+	GetListenKeys() []string // 监听的keys来重载配置,只要触发Reload的keys其中一个命中(即交集)就会触发重载
+	SetName(string)          // 设置配置唯一标识
+	GetName() string         // 获取获赔唯一标识
+	GetPriority() int        // 获取配置优先级，多个配置件套
 }
 
 var _ Config = (*ConfigBase)(nil)
