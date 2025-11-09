@@ -6,6 +6,9 @@ import (
 )
 
 func isListenKey(c Config, key string) bool {
+	if key == "*" {
+		return true
+	}
 	for _, v := range c.GetListenKeys() {
 		if v == "*" || v == key {
 			return true
